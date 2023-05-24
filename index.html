@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{ 
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-image: url(/sky.jpg);
+            background-repeat: no-repeat;
+        }
+        .clock{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40vh;
+            height: 40vh;
+            border-radius: 20vh;
+            border: 2vh solid white;
+            
+        }
+        .arms{
+            position: absolute;
+            background-color: black;
+            left: 50%;
+            border-radius: 1vh;
+            transform-origin: left;
+            transform: rotate(-90deg);
+        }
+        .hour{
+            top: calc(50% - 1.5vh);
+            width: 12vh;
+            height: 3vh;
+            border-radius: 1.5vh;
+        }
+        .minute{
+            top: calc(50% - 1vh);
+            width: 16vh;
+            height: 2vh;
+            border-radius: 1vh;
+        }
+        .second{
+            top: calc(50% - 0.5vh);
+            width:18vh;
+            height: 1vh;
+            border-radius: 0.5vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="arms hour"></div>
+        <div class="arms minute"></div>
+        <div class="arms second"></div>
+    </div>
+
+    <script>
+        const hourArm = document.querySelector(".hour")
+        const minuteArm = document.querySelector(".minute")
+        const secondArm = document.querySelector(".second")
+
+        function clock() {
+            const time = new Date();
+            const seconds = time.getSeconds()
+            const minutes = time.getMinutes()
+            const hours = time.getHours()
+            //console.log(seconds)
+            //console.log(minutes)
+            //console.log(hours)
+            const secondsDegrees = (((seconds/60)*360)-90);
+            secondArm.style.transform = `rotate(${secondsDegrees}deg)`
+            const hoursDegrees = (((hours/12)*360)-90)
+            hourArm.style.transform = `rotate(${hoursDegrees}deg)`
+            const minutesDegrees = (((minutes/60)*360)-90)
+            minuteArm.style.transform = `rotate(${minutesDegrees}deg)`
+
+
+        }
+
+        setInterval(clock, 100)
+
+
+
+    </script>
+</body>
+</html>
